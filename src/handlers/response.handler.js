@@ -1,11 +1,11 @@
 const responseWithData = (res, statusCode, data) =>
   res.status(statusCode).json(data)
 
-const error = res => res
-// responseWithData(res, 500, {
-//   status: 500,
-//   message: res.data || 'Oops! Something Wrong !',
-// })
+const error = (res, message = 'Internal Server Error', statusCode = 500) =>
+  responseWithData(res, statusCode, {
+    status: statusCode,
+    message,
+  })
 
 const badRequest = (res, message) =>
   responseWithData(res, 400, {
@@ -20,13 +20,19 @@ const created = (res, data) => responseWithData(res, 201, data)
 const unauthorize = res =>
   responseWithData(res, 401, {
     status: 401,
-    message: 'Unathorized',
+    message: 'Unauthorized',
   })
 
-const notfound = res =>
+const notFound = res =>
   responseWithData(res, 404, {
     status: 404,
     message: 'Resource not found',
+  })
+
+const conflict = (res, message) =>
+  responseWithData(res, 409, {
+    status: 409,
+    message,
   })
 
 export default {
@@ -35,5 +41,6 @@ export default {
   ok,
   created,
   unauthorize,
-  notfound,
+  notFound,
+  conflict,
 }

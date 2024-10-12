@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 })
 
 const port = process.env.PORT || 4000
-
+mongoose.set('strictQuery', true)
 mongoose
   .connect(process.env.MONGODB_URL || '')
   .then(() => console.log('Connected to DB!'))

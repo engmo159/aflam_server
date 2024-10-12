@@ -22,7 +22,7 @@ const signup = async (req, res) => {
     const token = jsonwebtoken.sign(
       { data: user.id },
       process.env.TOKEN_SECRET_KEY,
-      { expiresIn: '24h' }
+      { expiresIn: '30d' }
     )
 
     res.status(201).json({
@@ -60,7 +60,7 @@ const signIn = async (req, res) => {
     const token = jsonwebtoken.sign(
       { data: user.id },
       process.env.TOKEN_SECRET_KEY,
-      { expiresIn: '24h' }
+      { expiresIn: '30d' }
     )
 
     res.status(201).json({
